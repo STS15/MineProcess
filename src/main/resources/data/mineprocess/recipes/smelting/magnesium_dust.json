@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:smelting",
+	"ingredient": {
+		"item": "mineprocess:magnesium_ore"
+	},
+	"result": "mineprocess:magnesium_dust",
+	"experience": 0.2,
+	"cookingtime": 200
+}

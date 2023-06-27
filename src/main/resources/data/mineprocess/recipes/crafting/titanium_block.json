@@ -1,0 +1,17 @@
+{
+	"type": "crafting_shaped",
+	"pattern": [
+		"III",
+		"III",
+		"III"
+	],
+	"key": {
+		"I": {
+			"item": "mineprocess:titanium_ingot"
+		}
+	},
+	"result": {
+		"item": "mineprocess:titanium_block",
+		"count": 1
+	}
+}

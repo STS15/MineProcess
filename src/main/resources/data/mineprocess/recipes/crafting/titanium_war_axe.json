@@ -1,0 +1,20 @@
+{
+	"type": "crafting_shaped",
+	"pattern": [
+		"ISI",
+		"ISI",
+		" S "
+	],
+	"key": {
+		"I": {
+			"item": "mineprocess:titanium_ingot"
+		},
+		"S": {
+			"item": "minecraft:stick"
+		}
+	},
+	"result": {
+		"item": "mineprocess:titanium_war_axe",
+		"count": 1
+	}
+}

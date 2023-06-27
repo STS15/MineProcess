@@ -1,0 +1,6 @@
+{
+	"parent": "mineprocess:block/spiral_concentrator",
+  	"textures": {
+    	"north": "mineprocess:block/spiral_concentrator_front"
+  }
+}

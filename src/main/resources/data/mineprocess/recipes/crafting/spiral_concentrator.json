@@ -1,0 +1,29 @@
+{
+	"type": "crafting_shaped",
+	"pattern": [
+		"IKI",
+		"GMG",
+		"INI"
+	],
+	"key": {
+		"I": {
+			"item": "mineprocess:titanium_ingot"
+		},
+		"K": {
+			"item": "minecraft:bucket"
+		},
+		"M": {
+			"item": "minecraft:furnace"
+		},
+		"N": {
+			"item": "minecraft:redstone"
+		},
+		"G": {
+			"item": "minecraft:iron_nugget"
+		}
+	},
+	"result": {
+		"item": "mineprocess:spiral_concentrator",
+		"count": 1
+	}
+}

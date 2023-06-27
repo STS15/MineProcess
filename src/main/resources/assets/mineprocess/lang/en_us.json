@@ -1,0 +1,26 @@
+{
+	"itemGroup.mineprocess": "MineProcess",
+
+	"item.mineprocess.titanium_ingot": "Titanium Ingot",
+	"block.mineprocess.titanium_block": "Titanium Block",
+	"block.mineprocess.titanium_ore": "Titanium Ore",
+
+	"item.mineprocess.magnesium_dust": "Magnesium Dust",
+	"block.mineprocess.magnesium_block": "Magnesium Block",
+	"block.mineprocess.magnesium_ore": "Magnesium Ore",
+
+	"item.mineprocess.titanium_war_axe": "Titanium War Axe",
+	"item.mineprocess.titanium_dagger": "Titanium Dagger",
+	"item.mineprocess.titanium_sword": "Titanium Sword",
+	"item.mineprocess.titanium_pickaxe": "Titanium Pickaxe",
+
+	"item.mineprocess.titanium_helmet": "Titanium Helmet",
+	"item.mineprocess.titanium_chestplate": "Titanium Chestplate",
+	"item.mineprocess.titanium_leggings": "Titanium Leggings",
+	"item.mineprocess.titanium_boots": "Titanium Boots",
+
+
+
+	"block.mineprocess.spiral_concentrator": "Spiral Concentrator"
+	
+}

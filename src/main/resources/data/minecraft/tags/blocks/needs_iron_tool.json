@@ -1,0 +1,8 @@
+{
+	"replace": false,
+	"values": [
+		"mineprocess:titanium_block",
+		"mineprocess:titanium_ore",
+		"mineprocess:magnesium_ore"
+	]
+}
