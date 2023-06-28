@@ -2,8 +2,8 @@ package com.sts15.mineprocess.init;
 
 import com.google.common.base.Supplier;
 import com.sts15.mineprocess.MineProcess;
-
 import com.sts15.mineprocess.item.ModArmorMaterials;
+import com.sts15.mineprocess.item.TitaniumMaterial;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,28 +18,29 @@ public class ItemInit {
 	public static final RegistryObject<Item> TITANIUM_INGOT = register("titanium_ingot", () -> new Item(new Item.Properties().tab(MineProcess.MineProcess_TAB)));
 	public static final RegistryObject<Item> MAGNESIUM_DUST = register("magnesium_dust", () -> new Item(new Item.Properties().tab(MineProcess.MineProcess_TAB)));
 	public static final RegistryObject<Item> TITANIUM_PICKAXE = register("titanium_pickaxe",
-			() -> new PickaxeItem(Tiers.DIAMOND, 4, -2.8f,
+			() -> new PickaxeItem(new TitaniumMaterial(), 4, -2.8f,
 					new Item.Properties()
 							.tab(MineProcess.MineProcess_TAB)
 							.stacksTo(1)
 			));
 	public static final RegistryObject<Item> TITANIUM_SWORD = register("titanium_sword",
-			() -> new SwordItem(Tiers.DIAMOND, 7, -2.4f,
+			() -> new SwordItem(new TitaniumMaterial(), 7, -2.4f,
 			      new Item.Properties()
 			      .tab(MineProcess.MineProcess_TAB)
 			      .stacksTo(1)
 			      ));
 	public static final RegistryObject<Item> TITANIUM_WAR_AXE = register("titanium_war_axe",
-			() -> new AxeItem(Tiers.DIAMOND, 9, -3.2f,
+			() -> new AxeItem(new TitaniumMaterial(), 9, -3.2f,
 					new Item.Properties()
 							.tab(MineProcess.MineProcess_TAB)
 							.stacksTo(1)
 			));
 	public static final RegistryObject<Item> TITANIUM_DAGGER = register("titanium_dagger",
-			() -> new SwordItem(Tiers.DIAMOND, 5, -1.5f,
+			() -> new SwordItem(new TitaniumMaterial(), 5, -1.5f,
 					new Item.Properties()
 							.tab(MineProcess.MineProcess_TAB)
 							.stacksTo(1)
+
 			));
 
 	public static final RegistryObject<Item> TITANIUM_HELMET = register("titanium_helmet",

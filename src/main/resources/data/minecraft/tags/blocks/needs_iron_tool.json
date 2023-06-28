@@ -2,7 +2,10 @@
 	"replace": false,
 	"values": [
 		"mineprocess:titanium_block",
+		"mineprocess:magnesium_block",
 		"mineprocess:titanium_ore",
-		"mineprocess:magnesium_ore"
+		"mineprocess:magnesium_ore",
+		"mineprocess:magnesium_ore_deepslate",
+		"mineprocess:spiral_concentrator"
 	]
 }

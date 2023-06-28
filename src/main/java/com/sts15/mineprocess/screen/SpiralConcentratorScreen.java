@@ -37,7 +37,7 @@ public class SpiralConcentratorScreen extends AbstractContainerScreen<SpiralConc
 
     private void renderProgressArrow(PoseStack pPoseStack, int x, int y) {
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 132, y + 33, 176, 0, 8, menu.getScaledProgress());
+            blit(pPoseStack, x + 130, y + 33, 176, 0, 8, menu.getScaledProgress());
         }
     }
 

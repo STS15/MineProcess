@@ -25,11 +25,10 @@ public class ConfiguredFeatureInit {
             () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(TITANIUM_ORE_REPLACEMENT.get(), 11)));
 
 	private static final Supplier<List<OreConfiguration.TargetBlockState>> MAGNESIUM_ORE_REPLACEMENT = Suppliers.memoize(() ->
-			List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, BlockInit.MAGNESIUM_ORE.get().defaultBlockState())));
+			List.of(OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, BlockInit.MAGNESIUM_ORE.get().defaultBlockState()),
+					OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, BlockInit.MAGNESIUM_ORE_DEEPSLATE.get().defaultBlockState())));
 
 	public static final RegistryObject<ConfiguredFeature<?, ?>> MAGNESIUM_ORE = CONFIGURED_FEATURES.register("magnesium_ore",
 			() -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(MAGNESIUM_ORE_REPLACEMENT.get(), 11)));
-	
-	
 	
 }

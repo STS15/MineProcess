@@ -63,6 +63,16 @@ public class BlockInit {
 					.requiresCorrectToolForDrops()),
 			object -> () -> new BlockItem(object.get(), new Item.Properties().tab(MineProcess.MineProcess_TAB))
 	);
+
+	public static final RegistryObject<Block> MAGNESIUM_ORE_DEEPSLATE = register("magnesium_ore_deepslate",
+			() -> new Block(BlockBehaviour.Properties.of(
+							Material.STONE,
+							MaterialColor.COLOR_GRAY)
+					.strength(3.0f)
+					.sound(SoundType.SAND)
+					.requiresCorrectToolForDrops()),
+			object -> () -> new BlockItem(object.get(), new Item.Properties().tab(MineProcess.MineProcess_TAB))
+	);
 	
 	public static final RegistryObject<Block> SPIRAL_CONCENTRATOR = register("spiral_concentrator",
 			() -> new SpiralConcentrator(BlockBehaviour.Properties
