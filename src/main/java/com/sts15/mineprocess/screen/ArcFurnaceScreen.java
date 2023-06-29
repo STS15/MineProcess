@@ -46,7 +46,6 @@ public class ArcFurnaceScreen extends AbstractContainerScreen<ArcFurnaceMenu> {
 
         if(menu.isCrafting()) {
             int progress = menu.getScaledProgress() * progressBarWidth / 25;
-            System.out.println("Progress:: "+progress+" Scaled Progress:: "+ menu.getScaledProgress()+" Progress Bar Width::"+progressBarWidth);
             blit(pPoseStack, x + 96, y + 38, 176, 0, progress, progressBarHeight);
         }
     }

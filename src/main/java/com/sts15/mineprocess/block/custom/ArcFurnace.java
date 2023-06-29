@@ -46,14 +46,14 @@ public class ArcFurnace extends BaseEntityBlock {
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
 		switch (state.getValue(FACING)) {
-		case EAST:
-			return EAST;
-		case SOUTH:
-			return SOUTH;
-		case WEST:
-			return WEST;
-		default:
-			return NORTH;
+			case EAST:
+				return EAST;
+			case SOUTH:
+				return SOUTH;
+			case WEST:
+				return WEST;
+			default:
+				return NORTH;
 		}
 	}
 
@@ -62,18 +62,18 @@ public class ArcFurnace extends BaseEntityBlock {
 		builder.add(FACING, LIT);
 		super.createBlockStateDefinition(builder);
 	}
-	
+
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState mirror(BlockState state, Mirror mirror) {
 		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
-	
+
 	@Override
 	public BlockState rotate(BlockState state, LevelAccessor world, BlockPos pos, Rotation direction) {
 		return state.setValue(FACING, direction.rotate(state.getValue(FACING)));

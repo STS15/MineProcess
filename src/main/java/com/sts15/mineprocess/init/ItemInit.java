@@ -18,6 +18,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> TITANIUM_INGOT = register("titanium_ingot", () -> new Item(new Item.Properties().tab(MineProcess.MineProcess_TAB)));
 	public static final RegistryObject<Item> CARBIDE_INGOT = register("carbide_ingot", () -> new Item(new Item.Properties().tab(MineProcess.MineProcess_TAB)));
 	public static final RegistryObject<Item> MAGNESIUM_DUST = register("magnesium_dust", () -> new Item(new Item.Properties().tab(MineProcess.MineProcess_TAB)));
+
 	public static final RegistryObject<Item> TITANIUM_PICKAXE = register("titanium_pickaxe",
 			() -> new PickaxeItem(new TitaniumMaterial(), 4, -2.8f,
 					new Item.Properties()
@@ -44,29 +45,29 @@ public class ItemInit {
 
 			));
 
-	public static final RegistryObject<Item> TITANIUM_HELMET = register("titanium_helmet",
-			() -> new ArmorItem(ModArmorMaterials.TITANIUM, EquipmentSlot.HEAD,
+	public static final RegistryObject<Item> CARBIDE_HELMET = register("carbide_helmet",
+			() -> new ArmorItem(ModArmorMaterials.CARBIDE, EquipmentSlot.HEAD,
 					new Item.Properties()
 							.tab(MineProcess.MineProcess_TAB)
 							.stacksTo(1)
 							.fireResistant()
 			));
-	public static final RegistryObject<Item> TITANIUM_CHESTPLATE = register("titanium_chestplate",
-			() -> new ArmorItem(ModArmorMaterials.TITANIUM, EquipmentSlot.CHEST,
+	public static final RegistryObject<Item> CARBIDE_CHESTPLATE = register("carbide_chestplate",
+			() -> new ArmorItem(ModArmorMaterials.CARBIDE, EquipmentSlot.CHEST,
 					new Item.Properties()
 							.tab(MineProcess.MineProcess_TAB)
 							.stacksTo(1)
 							.fireResistant()
 			));
-	public static final RegistryObject<Item> TITANIUM_LEGGINGS = register("titanium_leggings",
-			() -> new ArmorItem(ModArmorMaterials.TITANIUM, EquipmentSlot.LEGS,
+	public static final RegistryObject<Item> CARBIDE_LEGGINGS = register("carbide_leggings",
+			() -> new ArmorItem(ModArmorMaterials.CARBIDE, EquipmentSlot.LEGS,
 					new Item.Properties()
 							.tab(MineProcess.MineProcess_TAB)
 							.stacksTo(1)
 							.fireResistant()
 			));
-	public static final RegistryObject<Item> TITANIUM_BOOTS = register("titanium_boots",
-			() -> new ArmorItem(ModArmorMaterials.TITANIUM, EquipmentSlot.FEET,
+	public static final RegistryObject<Item> CARBIDE_BOOTS = register("carbide_boots",
+			() -> new ArmorItem(ModArmorMaterials.CARBIDE, EquipmentSlot.FEET,
 					new Item.Properties()
 							.tab(MineProcess.MineProcess_TAB)
 							.stacksTo(1)

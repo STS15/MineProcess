@@ -2,11 +2,13 @@ package com.sts15.mineprocess.screen;
 
 import com.sts15.mineprocess.block.entity.ArcFurnaceBlockEntity;
 import com.sts15.mineprocess.init.BlockInit;
+import com.sts15.mineprocess.init.ItemInit;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -32,9 +34,26 @@ public class ArcFurnaceMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 32, 31));
-            this.addSlot(new SlotItemHandler(handler, 1, 70, 31));
-            this.addSlot(new SlotItemHandler(handler, 2, 124, 32));
+            this.addSlot(new SlotItemHandler(handler, 0, 32, 31) {
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return handler.isItemValid(0, stack)
+                            && stack.getItem() == ItemInit.TITANIUM_INGOT.get();
+                }
+            });
+            this.addSlot(new SlotItemHandler(handler, 1, 70, 31) {
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return handler.isItemValid(1, stack)
+                            && (stack.getItem() == Items.COAL_BLOCK || stack.getItem() == Items.DIAMOND);
+                }
+            });
+            this.addSlot(new SlotItemHandler(handler, 2, 124, 32) {
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return false;
+                }
+            });
         });
 
         addDataSlots(data);
