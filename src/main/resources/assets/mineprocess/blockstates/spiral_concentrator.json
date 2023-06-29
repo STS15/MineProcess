@@ -1,19 +1,13 @@
 {
-	"variants":{
-		"facing=north": {
-		"model": "mineprocess:block/spiral_concentrator"
-		},
-		"facing=south": { 
-		"model":"mineprocess:block/spiral_concentrator",
-		 "y" : 180
-		 },
-		"facing=west": {
-		"model":"mineprocess:block/spiral_concentrator", 
-		"y" : 270
-		},
-		"facing=east": { 
-		"model":"mineprocess:block/spiral_concentrator", 
-		"y" : 90
-		}
+	"variants": {
+		"facing=north,lit=false": { "model": "mineprocess:block/spiral_concentrator" },
+		"facing=north,lit=true": { "model": "mineprocess:block/spiral_concentrator_active" },
+		"facing=east,lit=false": { "model": "mineprocess:block/spiral_concentrator", "y": 90 },
+		"facing=east,lit=true": { "model": "mineprocess:block/spiral_concentrator_active", "y": 90 },
+		"facing=south,lit=false": { "model": "mineprocess:block/spiral_concentrator", "y": 180 },
+		"facing=south,lit=true": { "model": "mineprocess:block/spiral_concentrator_active", "y": 180 },
+		"facing=west,lit=false": { "model": "mineprocess:block/spiral_concentrator", "y": 270 },
+		"facing=west,lit=true": { "model": "mineprocess:block/spiral_concentrator_active", "y": 270 }
 	}
 }
+

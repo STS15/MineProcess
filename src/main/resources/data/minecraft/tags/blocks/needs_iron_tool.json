@@ -6,6 +6,7 @@
 		"mineprocess:titanium_ore",
 		"mineprocess:magnesium_ore",
 		"mineprocess:magnesium_ore_deepslate",
-		"mineprocess:spiral_concentrator"
+		"mineprocess:spiral_concentrator",
+		"mineprocess:arc_furnace"
 	]
 }

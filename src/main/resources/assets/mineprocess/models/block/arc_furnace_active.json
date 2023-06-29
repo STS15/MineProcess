@@ -1,0 +1,10 @@
+{
+	"parent": "mineprocess:block/arc_furnace",
+	"textures": {
+		"0": "mineprocess:block/arc_furnace_front_active",
+		"1": "mineprocess:block/arc_furnace_bottom",
+		"2": "mineprocess:block/arc_furnace_sides_active",
+		"3": "mineprocess:block/arc_furnace_top",
+		"particle": "mineprocess:block/arc_furnace_front_active"
+	}
+}
