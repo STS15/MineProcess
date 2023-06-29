@@ -16,6 +16,7 @@ public class ItemInit {
 	
 	// Add to creative tab
 	public static final RegistryObject<Item> TITANIUM_INGOT = register("titanium_ingot", () -> new Item(new Item.Properties().tab(MineProcess.MineProcess_TAB)));
+	public static final RegistryObject<Item> CARBIDE_INGOT = register("carbide_ingot", () -> new Item(new Item.Properties().tab(MineProcess.MineProcess_TAB)));
 	public static final RegistryObject<Item> MAGNESIUM_DUST = register("magnesium_dust", () -> new Item(new Item.Properties().tab(MineProcess.MineProcess_TAB)));
 	public static final RegistryObject<Item> TITANIUM_PICKAXE = register("titanium_pickaxe",
 			() -> new PickaxeItem(new TitaniumMaterial(), 4, -2.8f,

@@ -17,6 +17,9 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<SpiralConcentratorMenu>> SPIRAL_CONCENTRATOR_MENU =
             registerMenuType(SpiralConcentratorMenu::new, "spiral_concentrator_menu");
 
+    public static final RegistryObject<MenuType<ArcFurnaceMenu>> ARC_FURNACE_MENU =
+            registerMenuType(ArcFurnaceMenu::new, "arc_furnace_menu");
+
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory,
                                                                                                   String name) {

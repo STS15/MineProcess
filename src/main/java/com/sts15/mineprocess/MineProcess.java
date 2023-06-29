@@ -20,6 +20,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraft.client.gui.screens.MenuScreens;
 import com.sts15.mineprocess.screen.SpiralConcentratorScreen;
+import com.sts15.mineprocess.screen.ArcFurnaceScreen;
 
 @Mod("mineprocess")
 public class MineProcess {
@@ -57,6 +58,7 @@ public class MineProcess {
 		@SubscribeEvent
 		public static void onClientSetup(FMLClientSetupEvent event) {
 			MenuScreens.register(ModMenuTypes.SPIRAL_CONCENTRATOR_MENU.get(), SpiralConcentratorScreen::new);
+			MenuScreens.register(ModMenuTypes.ARC_FURNACE_MENU.get(), ArcFurnaceScreen::new);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 package com.sts15.mineprocess.block.custom;
 
 import com.sts15.mineprocess.block.entity.ModBlockEntities;
-import com.sts15.mineprocess.block.entity.SpiralConcentratorBlockEntity;
+import com.sts15.mineprocess.block.entity.ArcFurnaceBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -18,7 +18,6 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
@@ -27,7 +26,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 
-public class SpiralConcentrator extends BaseEntityBlock {
+public class ArcFurnace extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	public static final BooleanProperty LIT = BooleanProperty.create("lit");
 
@@ -36,7 +35,7 @@ public class SpiralConcentrator extends BaseEntityBlock {
 	public static final VoxelShape SOUTH = Shapes.box(0, 0, 0, 1, 1, 1);
 	public static final VoxelShape WEST = Shapes.box(0, 0, 0, 1, 1, 1);
 
-	public SpiralConcentrator(Properties properties) {
+	public ArcFurnace(Properties properties) {
 		super(properties.lightLevel(state -> {
 			return state.getValue(LIT) ? 4 : 0;
 		}));
@@ -93,8 +92,8 @@ public class SpiralConcentrator extends BaseEntityBlock {
 	public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
 		if (pState.getBlock() != pNewState.getBlock()) {
 			BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-			if (blockEntity instanceof SpiralConcentratorBlockEntity) {
-				((SpiralConcentratorBlockEntity) blockEntity).drops();
+			if (blockEntity instanceof ArcFurnaceBlockEntity) {
+				((ArcFurnaceBlockEntity) blockEntity).drops();
 			}
 		}
 		super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -105,8 +104,8 @@ public class SpiralConcentrator extends BaseEntityBlock {
 								 Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
 		if (!pLevel.isClientSide()) {
 			BlockEntity entity = pLevel.getBlockEntity(pPos);
-			if(entity instanceof SpiralConcentratorBlockEntity) {
-				NetworkHooks.openScreen(((ServerPlayer)pPlayer), (SpiralConcentratorBlockEntity)entity, pPos);
+			if(entity instanceof ArcFurnaceBlockEntity) {
+				NetworkHooks.openScreen(((ServerPlayer)pPlayer), (ArcFurnaceBlockEntity)entity, pPos);
 			} else {
 				throw new IllegalStateException("Our Container provider is missing!");
 			}
@@ -117,13 +116,15 @@ public class SpiralConcentrator extends BaseEntityBlock {
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-		return new SpiralConcentratorBlockEntity(pos, state);
+		return new ArcFurnaceBlockEntity(pos, state);
 	}
 
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
 																  BlockEntityType<T> type) {
-		return createTickerHelper(type, ModBlockEntities.SPIRAL_CONCENTRATOR.get(),
-				SpiralConcentratorBlockEntity::tick);
+		return createTickerHelper(type, ModBlockEntities.ARC_FURNACE.get(),
+				ArcFurnaceBlockEntity::tick);
 	}
+
+
 }

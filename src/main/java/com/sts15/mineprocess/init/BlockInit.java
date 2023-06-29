@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 import com.google.common.base.Supplier;
 import com.sts15.mineprocess.MineProcess;
+import com.sts15.mineprocess.block.custom.ArcFurnace;
 import com.sts15.mineprocess.block.custom.SpiralConcentrator;
 
 import net.minecraft.world.item.BlockItem;
@@ -76,6 +77,12 @@ public class BlockInit {
 	
 	public static final RegistryObject<Block> SPIRAL_CONCENTRATOR = register("spiral_concentrator",
 			() -> new SpiralConcentrator(BlockBehaviour.Properties
+					.copy(Blocks.FURNACE)
+					.sound(SoundType.STONE)),
+			object -> () -> new BlockItem(object.get(), new Item.Properties().tab(MineProcess.MineProcess_TAB)));
+
+	public static final RegistryObject<Block> ARC_FURNACE = register("arc_furnace",
+			() -> new ArcFurnace(BlockBehaviour.Properties
 					.copy(Blocks.FURNACE)
 					.sound(SoundType.STONE)),
 			object -> () -> new BlockItem(object.get(), new Item.Properties().tab(MineProcess.MineProcess_TAB)));

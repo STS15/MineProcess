@@ -1,8 +1,9 @@
 package com.sts15.mineprocess.block.entity;
 
+import com.sts15.mineprocess.block.custom.ArcFurnace;
 import com.sts15.mineprocess.block.custom.SpiralConcentrator;
 import com.sts15.mineprocess.init.ItemInit;
-import com.sts15.mineprocess.screen.SpiralConcentratorMenu;
+import com.sts15.mineprocess.screen.ArcFurnaceMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -15,6 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.Capability;
@@ -26,7 +28,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class SpiralConcentratorBlockEntity extends BlockEntity implements MenuProvider {
+public class ArcFurnaceBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -35,19 +37,18 @@ public class SpiralConcentratorBlockEntity extends BlockEntity implements MenuPr
     };
 
     protected final ContainerData data;
-    private boolean active;
     private int progress = 0;
     private int maxProgress = 78;
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
-    public SpiralConcentratorBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.SPIRAL_CONCENTRATOR.get(), pos, state);
+    public ArcFurnaceBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.ARC_FURNACE.get(), pos, state);
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
                 return switch (index) {
-                    case 0 -> SpiralConcentratorBlockEntity.this.progress;
-                    case 1 -> SpiralConcentratorBlockEntity.this.maxProgress;
+                    case 0 -> ArcFurnaceBlockEntity.this.progress;
+                    case 1 -> ArcFurnaceBlockEntity.this.maxProgress;
                     default -> 0;
                 };
             }
@@ -55,8 +56,8 @@ public class SpiralConcentratorBlockEntity extends BlockEntity implements MenuPr
             @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0 -> SpiralConcentratorBlockEntity.this.progress = value;
-                    case 1 -> SpiralConcentratorBlockEntity.this.maxProgress = value;
+                    case 0 -> ArcFurnaceBlockEntity.this.progress = value;
+                    case 1 -> ArcFurnaceBlockEntity.this.maxProgress = value;
                 }
             }
 
@@ -69,13 +70,13 @@ public class SpiralConcentratorBlockEntity extends BlockEntity implements MenuPr
 
     @Override
     public Component getDisplayName() {
-        return Component.literal("Spiral Concentrator");
+        return Component.literal("Arc Furnace");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-        return new SpiralConcentratorMenu(id, inventory, this, this.data);
+        return new ArcFurnaceMenu(id, inventory, this, this.data);
     }
 
     @Override
@@ -121,15 +122,15 @@ public class SpiralConcentratorBlockEntity extends BlockEntity implements MenuPr
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, SpiralConcentratorBlockEntity pEntity) {
+    public static void tick(Level level, BlockPos pos, BlockState state, ArcFurnaceBlockEntity pEntity) {
         if(level.isClientSide()) {
             return;
         }
 
         if(hasRecipe(pEntity)) {
             // Start processing - set the block state to lit
-            if (pEntity.progress == 0 && !state.getValue(SpiralConcentrator.LIT)) {
-                level.setBlock(pos, state.setValue(SpiralConcentrator.LIT, true), 3);
+            if (pEntity.progress == 0 && !state.getValue(ArcFurnace.LIT)) {
+                level.setBlock(pos, state.setValue(ArcFurnace.LIT, true), 3);
             }
 
             pEntity.progress++;
@@ -139,9 +140,9 @@ public class SpiralConcentratorBlockEntity extends BlockEntity implements MenuPr
                 craftItem(pEntity);
 
                 // Check if there's another item to process before unlighting
-                if (!hasRecipe(pEntity) && state.getValue(SpiralConcentrator.LIT)) {
+                if (!hasRecipe(pEntity) && state.getValue(ArcFurnace.LIT)) {
                     // Finish processing - set the block state to unlit
-                    level.setBlock(pos, state.setValue(SpiralConcentrator.LIT, false), 3);
+                    level.setBlock(pos, state.setValue(ArcFurnace.LIT, false), 3);
                 }
 
                 pEntity.resetProgress();
@@ -151,8 +152,8 @@ public class SpiralConcentratorBlockEntity extends BlockEntity implements MenuPr
             setChanged(level, pos, state);
 
             // No valid recipe - set the block state to unlit
-            if (state.getValue(SpiralConcentrator.LIT)) {
-                level.setBlock(pos, state.setValue(SpiralConcentrator.LIT, false), 3);
+            if (state.getValue(ArcFurnace.LIT)) {
+                level.setBlock(pos, state.setValue(ArcFurnace.LIT, false), 3);
             }
         }
     }
@@ -161,27 +162,39 @@ public class SpiralConcentratorBlockEntity extends BlockEntity implements MenuPr
         this.progress = 0;
     }
 
-    private static void craftItem(SpiralConcentratorBlockEntity pEntity) {
-
+    private static void craftItem(ArcFurnaceBlockEntity pEntity) {
         if(hasRecipe(pEntity)) {
+            // Depending on the item in slot 0, extract different quantities
+            if (pEntity.itemHandler.getStackInSlot(0).getItem() == Items.DIAMOND) {
+                pEntity.itemHandler.extractItem(0, 1, false);
+            } else if (pEntity.itemHandler.getStackInSlot(0).getItem() == Items.COAL_BLOCK) {
+                pEntity.itemHandler.extractItem(0, 8, false);
+            }
+
             pEntity.itemHandler.extractItem(1, 1, false);
-            pEntity.itemHandler.setStackInSlot(2, new ItemStack(ItemInit.MAGNESIUM_DUST.get(),
-                    pEntity.itemHandler.getStackInSlot(2).getCount() + 4));
+            pEntity.itemHandler.setStackInSlot(2, new ItemStack(ItemInit.CARBIDE_INGOT.get(),
+                    pEntity.itemHandler.getStackInSlot(2).getCount() + 1));
 
             pEntity.resetProgress();
         }
     }
 
-    private static boolean hasRecipe(SpiralConcentratorBlockEntity entity) {
+    private static boolean hasRecipe(ArcFurnaceBlockEntity entity) {
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
-        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
-            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        boolean hasInFirstSlot = false;
+        boolean hasInSecondSlot = entity.itemHandler.getStackInSlot(1).getItem() == ItemInit.TITANIUM_INGOT.get();
+        boolean canInsertIntoOutput = canInsertAmountIntoOutputSlot(inventory) &&
+                canInsertItemIntoOutputSlot(inventory, new ItemStack(ItemInit.CARBIDE_INGOT.get(), 1));
+
+        // Check if there is a diamond or 8 coal blocks in the first slot
+        ItemStack stackInFirstSlot = entity.itemHandler.getStackInSlot(0);
+        if (stackInFirstSlot.getItem() == Items.DIAMOND && stackInFirstSlot.getCount() >= 1) {
+            hasInFirstSlot = true;
+        } else if (stackInFirstSlot.getItem() == Items.COAL_BLOCK && stackInFirstSlot.getCount() >= 8) {
+            hasInFirstSlot = true;
         }
 
-        boolean hasInFirstSlot = entity.itemHandler.getStackInSlot(1).getItem() == ItemInit.TITANIUM_INGOT.get();
-
-        return hasInFirstSlot && canInsertAmountIntoOutputSlot(inventory) &&
-                canInsertItemIntoOutputSlot(inventory, new ItemStack(ItemInit.MAGNESIUM_DUST.get(), 4));
+        return hasInFirstSlot && hasInSecondSlot && canInsertIntoOutput;
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack stack) {
@@ -190,13 +203,5 @@ public class SpiralConcentratorBlockEntity extends BlockEntity implements MenuPr
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
         return inventory.getItem(2).getMaxStackSize() > inventory.getItem(2).getCount();
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public boolean isActive() {
-        return active;
     }
 }
